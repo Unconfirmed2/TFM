@@ -20,6 +20,8 @@ export type Preferences = {
   symbol_overlay: boolean,
   experimental_ui: boolean,
   lang: string,
+  card_size: string,
+  board_size: string,
 }
 
 export type Preference = keyof Preferences;
@@ -30,6 +32,8 @@ const defaults: Preferences = {
   magnify_cards: true,
   show_alerts: true,
   lang: 'en',
+  card_size: 'normal',
+  board_size: 'normal',
 
   hide_hand: false,
   hide_awards_and_milestones: false,
@@ -69,11 +73,26 @@ export class PreferencesManager {
       const value = this.localStorageSupported() ? localStorage.getItem(key) : undefined;
       if (value) this._set(key, value);
     }
+    
+    // Migrate from old small_cards preference to new card_size preference
+    if (this.localStorageSupported()) {
+      const oldSmallCards = localStorage.getItem('small_cards');
+      const existingCardSize = localStorage.getItem('card_size');
+      
+      if (oldSmallCards && !existingCardSize) {
+        if (oldSmallCards === '1') {
+          this._set('card_size', 'small');
+          localStorage.setItem('card_size', 'small');
+        }
+        // Remove the old preference
+        localStorage.removeItem('small_cards');
+      }
+    }
   }
 
   private _set(key: Preference, val: string | boolean) {
-    if (key === 'lang') {
-      this._values.lang = String(val);
+    if (key === 'lang' || key === 'card_size' || key === 'board_size') {
+      this._values[key] = String(val);
     } else {
       this._values[key] = typeof(val) === 'boolean' ? val : (val === '1');
     }
@@ -90,8 +109,8 @@ export class PreferencesManager {
     if (setOnChange && this._values[name] === val) return;
     this._set(name, val);
     if (this.localStorageSupported()) {
-      if (name === 'lang') {
-        localStorage.setItem(name, this._values.lang);
+      if (name === 'lang' || name === 'card_size' || name === 'board_size') {
+        localStorage.setItem(name, String(val));
       } else {
         localStorage.setItem(name, val ? '1' : '0');
       }

@@ -56,17 +56,9 @@
         </div>
       </div>
 
-      <players-overview class="player_home_block player_home_block--players nofloat" :playerView="playerView" v-trim-whitespace id="shortkey-playersoverview"/>
+      
 
-      <div class="player_home_block nofloat">
-        <log-panel
-          :id="playerView.id"
-          :players="playerView.players"
-          :generation="game.generation"
-          :lastSoloGeneration="game.lastSoloGeneration"
-          :color="thisPlayer.color"
-          :step="game.step"></log-panel>
-      </div>
+  <!-- log-panel moved to bottom of page -->
 
       <div class="player_home_block player_home_block--actions nofloat">
         <a name="actions" class="player_home_anchor"></a>
@@ -259,8 +251,21 @@
       <a :href="'/spectator?id=' +game.spectatorId" target="_blank" rel="noopener noreferrer" v-i18n>Spectator link</a>
     </div>
     <purge-warning :expectedPurgeTimeMs="playerView.game.expectedPurgeTimeMs"></purge-warning>
+    
+    <!-- New Bottom Log Panel Component -->
+    <bottom-log-panel
+      :isVisible="showBottomLog"
+      :playerId="playerView.id"
+      :generation="game.generation"
+      :step="game.step"
+      @toggle="toggleBottomLog"
+    />
   </div>
 </template>
+
+<style scoped>
+/* PlayerHome specific styles - bottom log panel is self-contained */
+</style>
 
 <script lang="ts">
 import Vue from 'vue';
@@ -284,6 +289,7 @@ import MoonBoard from '@/client/components/moon/MoonBoard.vue';
 import StackedCards from '@/client/components/StackedCards.vue';
 import PurgeWarning from '@/client/components/common/PurgeWarning.vue';
 import UndergroundTokens from '@/client/components/underworld/UndergroundTokens.vue';
+import BottomLogPanel from '@/client/components/BottomLogPanel.vue';
 import {playerColorClass} from '@/common/utils/utils';
 import {getPreferences, PreferencesManager} from '@/client/utils/PreferencesManager';
 import {KeyboardNavigation} from '@/client/components/KeyboardNavigation';
@@ -303,6 +309,7 @@ export interface PlayerHomeModel {
   showAutomatedCards: boolean;
   showEventCards: boolean;
   tileView: TileView;
+  showBottomLog: boolean;
 }
 
 class TerraformedAlertDialog {
@@ -319,6 +326,7 @@ export default Vue.extend({
       showAutomatedCards: !preferences.hide_automated_cards,
       showEventCards: !preferences.hide_event_cards,
       tileView: 'show',
+  showBottomLog: true,
     };
   },
   watch: {
@@ -387,8 +395,12 @@ export default Vue.extend({
     'stacked-cards': StackedCards,
     PurgeWarning,
     UndergroundTokens,
+    BottomLogPanel,
   },
   methods: {
+    toggleBottomLog(): void {
+      this.showBottomLog = !this.showBottomLog;
+    },
     navigatePage(event: KeyboardEvent) {
       const ids: Partial<Record<string, string>> = {
         [KeyboardNavigation.GAMEBOARD]: 'shortkey-board',

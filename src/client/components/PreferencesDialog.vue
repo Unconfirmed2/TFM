@@ -7,6 +7,30 @@
         </label>
       </div>
       <div class="preferences_panel_item">
+        <label>
+          <span v-i18n>Card size</span>
+          <select v-on:change="updatePreferences" v-model="prefs.card_size" data-test="card_size" class="preferences-select">
+            <option value="tiny" v-i18n>Tiny</option>
+            <option value="small" v-i18n>Small</option>
+            <option value="normal" v-i18n>Normal</option>
+            <option value="large" v-i18n>Large</option>
+            <option value="huge" v-i18n>Huge</option>
+          </select>
+        </label>
+      </div>
+      <div class="preferences_panel_item">
+        <label>
+          <span v-i18n>Board size</span>
+          <select v-on:change="updatePreferences" v-model="prefs.board_size" data-test="board_size" class="preferences-select">
+            <option value="tiny" v-i18n>Tiny</option>
+            <option value="small" v-i18n>Small</option>
+            <option value="normal" v-i18n>Normal</option>
+            <option value="large" v-i18n>Large</option>
+            <option value="huge" v-i18n>Huge</option>
+          </select>
+        </label>
+      </div>
+      <div class="preferences_panel_item">
         <label class="form-switch">
           <input type="checkbox" v-on:change="updatePreferences" v-model="prefs.small_cards" data-test="small_cards">
           <i class="form-icon"></i> <span v-i18n>Smaller cards</span>
@@ -136,6 +160,25 @@ export default (Vue as WithRefs<Refs>).extend({
         target.classList.remove('preferences_' + cssClassSuffix);
       }
     },
+    setStringPreferencesCSS(
+      target: HTMLElement,
+      val: string,
+      name: Preference,
+    ): void {
+      // Remove all possible values for this preference
+      const possibleValues = name === 'card_size' || name === 'board_size' 
+        ? ['tiny', 'small', 'normal', 'large', 'huge']
+        : [];
+      
+      possibleValues.forEach(value => {
+        target.classList.remove('preferences_' + name + '_' + value);
+      });
+      
+      // Add the current value
+      if (val && val !== '') {
+        target.classList.add('preferences_' + name + '_' + val);
+      }
+    },
     updatePreferences(): void {
       for (const k of Object.keys(this.preferencesManager.values()) as Array<Preference>) {
         const val = this.prefs[k];
@@ -148,7 +191,12 @@ export default (Vue as WithRefs<Refs>).extend({
 
       for (const k of Object.keys(this.prefs) as Array<Preference>) {
         if (k === 'lang') continue;
-        this.setBoolPreferencesCSS(target, this.prefs[k], k);
+        
+        if (k === 'card_size' || k === 'board_size') {
+          this.setStringPreferencesCSS(target, this.prefs[k] as string, k);
+        } else {
+          this.setBoolPreferencesCSS(target, this.prefs[k] as boolean, k);
+        }
       }
 
       if (!target.classList.contains('language-' + this.prefs.lang)) {

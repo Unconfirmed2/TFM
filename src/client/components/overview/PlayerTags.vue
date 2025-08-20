@@ -145,7 +145,7 @@ export default Vue.extend({
     conciseTagsViewDefaultValue: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
   },
   data() {

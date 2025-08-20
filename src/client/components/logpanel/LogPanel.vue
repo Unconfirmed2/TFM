@@ -1,5 +1,5 @@
 <template>
-  <div class="log-container">
+  <div class="log-container" w-full>
     <div class="log-generations">
       <h2 :class="getTitleClasses()">
           <span v-i18n>Game log</span>
@@ -12,7 +12,7 @@
       </div>
       <span class="label-additional" v-if="players.length === 1"><span :class="lastGenerationClass" v-i18n>of {{lastSoloGeneration}}</span></span>
     </div>
-    <div class="panel log-panel">
+    <div class="panel log-panel w-full">
       <div id="logpanel-scrollable" class="panel-body">
         <ul v-if="messages">
           <log-message-component v-for="(message, index) in messages" :key="index" :message="message" :players="players" v-on:click="messageClicked(message)"></log-message-component>

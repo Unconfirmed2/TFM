@@ -286,7 +286,7 @@
 
 /* Visual effects of changing settings */
 
-/* Reduce all cards size */
+/* Legacy support for small_cards preference - now redirects to card_size_small */
 .preferences_small_cards .filterDiv,
 .preferences_small_cards .filterDiv:hover {
     transform: scale(0.8);
@@ -361,6 +361,11 @@
     transform: scale(0.95);
 }
 
+/* Legacy compatibility for small_cards with magnify_cards */
+.preferences_small_cards.preferences_magnify_cards .filterDiv:hover {
+    transform: scale(0.95);
+}
+
 .info_panel-spacing{
     padding-bottom: 40px;
 }
@@ -407,4 +412,455 @@
   a {
     color: blue,
   }
+}
+
+/* Adjustable Card Sizes - Component Level Scaling */
+
+/* Tiny Cards (60% size) */
+.preferences_card_size_tiny .filterDiv {
+    width: 144px; /* 240px * 0.6 */
+    height: 186px; /* 310px * 0.6 */
+    margin: 9px 18px 6px 0px; /* Adjusted margins */
+    border-radius: 12px; /* 20px * 0.6 */
+    font-size: 11px; /* Base font scaling */
+}
+.preferences_card_size_tiny .filterDiv.card-standard-project {
+    width: 141px; /* 235px * 0.6 */
+    height: 93px; /* 155px * 0.6 */
+    margin: 9px 18px 6px 0px;
+}
+.preferences_card_size_tiny .card-title {
+    font-size: 10px; /* 16px * 0.6 */
+    line-height: 18px; /* 30px * 0.6 */
+}
+.preferences_card_size_tiny .card-cost {
+    font-size: 16px; /* 26px * 0.6 */
+    width: 30px; /* 50px * 0.6 */
+    height: 30px; /* 50px * 0.6 */
+    line-height: 29px; /* 48px * 0.6 */
+    background-size: 30px; /* 50px * 0.6 */
+    border-radius: 6px; /* 10px * 0.6 */
+}
+.preferences_card_size_tiny .card-tag {
+    width: 24px; /* 40px * 0.6 */
+    height: 24px; /* 40px * 0.6 */
+    background-size: 30px; /* 50px * 0.6 */
+    background-position: -3px; /* -5px * 0.6 */
+    margin-left: 2px; /* 4px * 0.6 */
+}
+.preferences_card_size_tiny .card-help {
+    font-size: 12px; /* 20px * 0.6 */
+    width: 14px; /* 24px * 0.6 */
+    height: 14px; /* 24px * 0.6 */
+    line-height: 14px;
+    border-radius: 14px;
+    margin-left: -12px; /* -20px * 0.6 */
+}
+.preferences_card_size_tiny .card-expansion {
+    width: 12px; /* 20px * 0.6 */
+    height: 12px; /* 20px * 0.6 */
+    line-height: 12px;
+    border-radius: 6px;
+    background-size: 14px 14px; /* 24px * 0.6 */
+}
+.preferences_card_size_tiny .corporation-label {
+    width: 69px; /* 115px * 0.6 */
+    height: 8px; /* 14px * 0.6 */
+    line-height: 9px; /* 15px * 0.6 */
+    font-size: 8px; /* 13px * 0.6 */
+    top: 5px; /* 8px * 0.6 */
+    border-radius: 4px 4px 1px 1px; /* 7px * 0.6 */
+}
+.preferences_card_size_tiny .prelude-label {
+    width: 48px; /* 80px * 0.6 */
+    height: 12px; /* 20px * 0.6 */
+    line-height: 13px; /* 22px * 0.6 */
+    font-size: 7px; /* 12px * 0.6 */
+    top: 9px; /* 15px * 0.6 */
+    left: 2px; /* 4px * 0.6 */
+    border-radius: 8px 1px 1px 1px; /* 14px * 0.6 */
+}
+.preferences_card_size_tiny .card-content-wrapper {
+    padding: 5px; /* Scale content padding */
+}
+.preferences_card_size_tiny .contentCorporation {
+    padding: 5px; /* 8px * 0.6 */
+    top: -24px; /* -40px * 0.6 */
+}
+
+/* Small Cards (80% size) */
+.preferences_card_size_small .filterDiv {
+    width: 192px; /* 240px * 0.8 */
+    height: 248px; /* 310px * 0.8 */
+    margin: 12px 24px 8px 0px;
+    border-radius: 16px; /* 20px * 0.8 */
+    font-size: 13px; /* Base font scaling */
+}
+.preferences_card_size_small .filterDiv.card-standard-project {
+    width: 188px; /* 235px * 0.8 */
+    height: 124px; /* 155px * 0.8 */
+    margin: 12px 24px 8px 0px;
+}
+.preferences_card_size_small .card-title {
+    font-size: 13px; /* 16px * 0.8 */
+    line-height: 24px; /* 30px * 0.8 */
+}
+.preferences_card_size_small .card-cost {
+    font-size: 21px; /* 26px * 0.8 */
+    width: 40px; /* 50px * 0.8 */
+    height: 40px; /* 50px * 0.8 */
+    line-height: 38px; /* 48px * 0.8 */
+    background-size: 40px; /* 50px * 0.8 */
+    border-radius: 8px; /* 10px * 0.8 */
+}
+.preferences_card_size_small .card-tag {
+    width: 32px; /* 40px * 0.8 */
+    height: 32px; /* 40px * 0.8 */
+    background-size: 40px; /* 50px * 0.8 */
+    background-position: -4px; /* -5px * 0.8 */
+    margin-left: 3px; /* 4px * 0.8 */
+}
+.preferences_card_size_small .card-help {
+    font-size: 16px; /* 20px * 0.8 */
+    width: 19px; /* 24px * 0.8 */
+    height: 19px; /* 24px * 0.8 */
+    line-height: 19px;
+    border-radius: 19px;
+    margin-left: -16px; /* -20px * 0.8 */
+}
+.preferences_card_size_small .card-expansion {
+    width: 16px; /* 20px * 0.8 */
+    height: 16px; /* 20px * 0.8 */
+    line-height: 16px;
+    border-radius: 8px;
+    background-size: 19px 19px; /* 24px * 0.8 */
+}
+.preferences_card_size_small .corporation-label {
+    width: 92px; /* 115px * 0.8 */
+    height: 11px; /* 14px * 0.8 */
+    line-height: 12px; /* 15px * 0.8 */
+    font-size: 10px; /* 13px * 0.8 */
+    top: 6px; /* 8px * 0.8 */
+    border-radius: 6px 6px 2px 2px; /* 7px * 0.8 */
+}
+.preferences_card_size_small .prelude-label {
+    width: 64px; /* 80px * 0.8 */
+    height: 16px; /* 20px * 0.8 */
+    line-height: 18px; /* 22px * 0.8 */
+    font-size: 10px; /* 12px * 0.8 */
+    top: 12px; /* 15px * 0.8 */
+    left: 3px; /* 4px * 0.8 */
+    border-radius: 11px 2px 2px 2px; /* 14px * 0.8 */
+}
+.preferences_card_size_small .card-content-wrapper {
+    padding: 6px; /* Scale content padding */
+}
+.preferences_card_size_small .contentCorporation {
+    padding: 6px; /* 8px * 0.8 */
+    top: -32px; /* -40px * 0.8 */
+}
+
+/* Normal Cards (100% size - baseline) */
+.preferences_card_size_normal .filterDiv {
+    width: 240px;
+    height: 310px;
+    margin: 15px 30px 10px 0px;
+}
+.preferences_card_size_normal .filterDiv.card-standard-project {
+    width: 235px;
+    height: 155px;
+    margin: 15px 30px 10px 0px;
+}
+
+/* Large Cards (120% size) */
+.preferences_card_size_large .filterDiv {
+    width: 288px; /* 240px * 1.2 */
+    height: 372px; /* 310px * 1.2 */
+    margin: 18px 36px 12px 0px;
+    border-radius: 24px; /* 20px * 1.2 */
+    font-size: 17px; /* Base font scaling */
+}
+.preferences_card_size_large .filterDiv.card-standard-project {
+    width: 282px; /* 235px * 1.2 */
+    height: 186px; /* 155px * 1.2 */
+    margin: 18px 36px 12px 0px;
+}
+.preferences_card_size_large .card-title {
+    font-size: 19px; /* 16px * 1.2 */
+    line-height: 36px; /* 30px * 1.2 */
+}
+.preferences_card_size_large .card-cost {
+    font-size: 31px; /* 26px * 1.2 */
+    width: 60px; /* 50px * .2 */
+    height: 60px; /* 50px * 1.2 */
+    line-height: 58px; /* 48px * 1.2 */
+    background-size: 60px; /* 50px * 1.2 */
+    border-radius: 12px; /* 10px * 1.2 */
+}
+.preferences_card_size_large .card-tag {
+    width: 48px; /* 40px * 1.2 */
+    height: 48px; /* 40px * 1.2 */
+    background-size: 60px; /* 50px * 1.2 */
+    background-position: -6px; /* -5px * 1.2 */
+    margin-left: 5px; /* 4px * 1.2 */
+}
+.preferences_card_size_large .card-help {
+    font-size: 24px; /* 20px * 1.2 */
+    width: 29px; /* 24px * 1.2 */
+    height: 29px; /* 24px * 1.2 */
+    line-height: 29px;
+    border-radius: 29px;
+    margin-left: -24px; /* -20px * 1.2 */
+}
+.preferences_card_size_large .card-expansion {
+    width: 24px; /* 20px * 1.2 */
+    height: 24px; /* 20px * 1.2 */
+    line-height: 24px;
+    border-radius: 12px;
+    background-size: 29px 29px; /* 24px * 1.2 */
+}
+.preferences_card_size_large .corporation-label {
+    width: 138px; /* 115px * 1.2 */
+    height: 17px; /* 14px * 1.2 */
+    line-height: 18px; /* 15px * 1.2 */
+    font-size: 16px; /* 13px * 1.2 */
+    top: 10px; /* 8px * 1.2 */
+    border-radius: 8px 8px 2px 2px; /* 7px * 1.2 */
+}
+.preferences_card_size_large .prelude-label {
+    width: 96px; /* 80px * 1.2 */
+    height: 24px; /* 20px * 1.2 */
+    line-height: 26px; /* 22px * 1.2 */
+    font-size: 14px; /* 12px * 1.2 */
+    top: 18px; /* 15px * 1.2 */
+    left: 5px; /* 4px * 1.2 */
+    border-radius: 17px 2px 2px 2px; /* 14px * 1.2 */
+}
+.preferences_card_size_large .card-content-wrapper {
+    padding: 10px; /* Scale content padding */
+}
+.preferences_card_size_large .contentCorporation {
+    padding: 10px; /* 8px * 1.2 */
+    top: -48px; /* -40px * 1.2 */
+}
+
+/* Huge Cards (140% size) */
+.preferences_card_size_huge .filterDiv {
+    width: 336px; /* 240px * 1.4 */
+    height: 434px; /* 310px * 1.4 */
+    margin: 21px 42px 14px 0px;
+    border-radius: 28px; /* 20px * 1.4 */
+    font-size: 19px; /* Base font scaling */
+}
+.preferences_card_size_huge .filterDiv.card-standard-project {
+    width: 329px; /* 235px * 1.4 */
+    height: 217px; /* 155px * 1.4 */
+    margin: 21px 42px 14px 0px;
+}
+.preferences_card_size_huge .card-title {
+    font-size: 22px; /* 16px * 1.4 */
+    line-height: 42px; /* 30px * 1.4 */
+}
+.preferences_card_size_huge .card-cost {
+    font-size: 36px; /* 26px * 1.4 */
+    width: 70px; /* 50px * 1.4 */
+    height: 70px; /* 50px * 1.4 */
+    line-height: 67px; /* 48px * 1.4 */
+    background-size: 70px; /* 50px * 1.4 */
+    border-radius: 14px; /* 10px * 1.4 */
+}
+.preferences_card_size_huge .card-tag {
+    width: 56px; /* 40px * 1.4 */
+    height: 56px; /* 40px * 1.4 */
+    background-size: 70px; /* 50px * 1.4 */
+    background-position: -7px; /* -5px * 1.4 */
+    margin-left: 6px; /* 4px * 1.4 */
+}
+.preferences_card_size_huge .card-help {
+    font-size: 28px; /* 20px * 1.4 */
+    width: 34px; /* 24px * 1.4 */
+    height: 34px; /* 24px * 1.4 */
+    line-height: 34px;
+    border-radius: 34px;
+    margin-left: -28px; /* -20px * 1.4 */
+}
+.preferences_card_size_huge .card-expansion {
+    width: 28px; /* 20px * 1.4 */
+    height: 28px; /* 20px * 1.4 */
+    line-height: 28px;
+    border-radius: 14px;
+    background-size: 34px 34px; /* 24px * 1.4 */
+}
+.preferences_card_size_huge .corporation-label {
+    width: 161px; /* 115px * 1.4 */
+    height: 20px; /* 14px * 1.4 */
+    line-height: 21px; /* 15px * 1.4 */
+    font-size: 18px; /* 13px * 1.4 */
+    top: 11px; /* 8px * 1.4 */
+    border-radius: 10px 10px 3px 3px; /* 7px * 1.4 */
+}
+.preferences_card_size_huge .prelude-label {
+    width: 112px; /* 80px * 1.4 */
+    height: 28px; /* 20px * 1.4 */
+    line-height: 31px; /* 22px * 1.4 */
+    font-size: 17px; /* 12px * 1.4 */
+    top: 21px; /* 15px * 1.4 */
+    left: 6px; /* 4px * 1.4 */
+    border-radius: 20px 3px 3px 3px; /* 14px * 1.4 */
+}
+.preferences_card_size_huge .card-content-wrapper {
+    padding: 11px; /* Scale content padding */
+}
+.preferences_card_size_huge .contentCorporation {
+    padding: 11px; /* 8px * 1.4 */
+    top: -56px; /* -40px * 1.4 */
+}
+
+/* Adjustable Board Sizes - Component Level Scaling */
+
+/* Tiny Board (60% size) */
+.preferences_board_size_tiny .board {
+    width: 360px; /* 600px * 0.6 */
+    height: 293px; /* 488px * 0.6 */
+    margin: 51px 0 0 56px; /* 85px * 0.6, 93px * 0.6 */
+}
+.preferences_board_size_tiny .board-cont {
+    width: 402px; /* 670px * 0.6 */
+    margin-top: 12px; /* 20px * 0.6 */
+}
+.preferences_board_size_tiny .board-space-bonus {
+    width: 10px; /* 16px * 0.6 */
+    height: 10px; /* 16px * 0.6 */
+}
+.preferences_board_size_tiny .board-caption {
+    font-size: 6px; /* 10px * 0.6 */
+}
+.preferences_board_size_tiny .board-line {
+    stroke-width: 2; /* 3 * 0.6 */
+}
+
+/* Small Board (80% size) */
+.preferences_board_size_small .board {
+    width: 480px; /* 600px * 0.8 */
+    height: 390px; /* 488px * 0.8 */
+    margin: 68px 0 0 74px; /* 85px * 0.8, 93px * 0.8 */
+}
+.preferences_board_size_small .board-cont {
+    width: 536px; /* 670px * 0.8 */
+    margin-top: 16px; /* 20px * 0.8 */
+}
+.preferences_board_size_small .board-space-bonus {
+    width: 13px; /* 16px * 0.8 */
+    height: 13px; /* 16px * 0.8 */
+}
+.preferences_board_size_small .board-caption {
+    font-size: 8px; /* 10px * 0.8 */
+}
+.preferences_board_size_small .board-line {
+    stroke-width: 2; /* 3 * 0.8 */
+}
+
+/* Normal Board (100% size - baseline) */
+.preferences_board_size_normal .board {
+    width: 600px;
+    height: 488px;
+    margin: 85px 0 0 93px;
+}
+.preferences_board_size_normal .board-cont {
+    width: 670px;
+    margin-top: 20px;
+}
+
+/* Large Board (120% size) */
+.preferences_board_size_large .board {
+    width: 720px; /* 600px * 1.2 */
+    height: 586px; /* 488px * 1.2 */
+    margin: 102px 0 0 112px; /* 85px * 1.2, 93px * 1.2 */
+}
+.preferences_board_size_large .board-cont {
+    width: 804px; /* 670px * 1.2 */
+    margin-top: 24px; /* 20px * 1.2 */
+}
+.preferences_board_size_large .board-space-bonus {
+    width: 19px; /* 16px * 1.2 */
+    height: 19px; /* 16px * 1.2 */
+}
+.preferences_board_size_large .board-caption {
+    font-size: 12px; /* 10px * 1.2 */
+}
+.preferences_board_size_large .board-line {
+    stroke-width: 4; /* 3 * 1.2 */
+}
+
+/* Huge Board (140% size) */
+.preferences_board_size_huge .board {
+    width: 840px; /* 600px * 1.4 */
+    height: 683px; /* 488px * 1.4 */
+    margin: 119px 0 0 130px; /* 85px * 1.4, 93px * 1.4 */
+}
+.preferences_board_size_huge .board-cont {
+    width: 938px; /* 670px * 1.4 */
+    margin-top: 28px; /* 20px * 1.4 */
+}
+.preferences_board_size_huge .board-space-bonus {
+    width: 22px; /* 16px * 1.4 */
+    height: 22px; /* 16px * 1.4 */
+}
+.preferences_board_size_huge .board-caption {
+    font-size: 14px; /* 10px * 1.4 */
+}
+.preferences_board_size_huge .board-line {
+    stroke-width: 4; /* 3 * 1.4 */
+}
+
+/* Handle card size interactions with magnification - Updated for component scaling */
+.preferences_card_size_tiny.preferences_magnify_cards .filterDiv:hover {
+    width: 154px; /* Slightly larger on hover */
+    height: 199px;
+}
+
+.preferences_card_size_small.preferences_magnify_cards .filterDiv:hover {
+    width: 206px; /* Slightly larger on hover */
+    height: 266px;
+}
+
+.preferences_card_size_normal.preferences_magnify_cards .filterDiv:hover {
+    width: 288px; /* 240px * 1.2 */
+    height: 372px; /* 310px * 1.2 */
+}
+
+.preferences_card_size_large.preferences_magnify_cards .filterDiv:hover {
+    width: 336px; /* 288px * 1.17 */
+    height: 434px; /* 372px * 1.17 */
+}
+
+.preferences_card_size_huge.preferences_magnify_cards .filterDiv:hover {
+    width: 384px; /* 336px * 1.14 */
+    height: 496px; /* 434px * 1.14 */
+}
+
+/* Preferences Panel Item Styling */
+.preferences_panel_item {
+    margin: 6px 0px;
+}
+
+.preferences-select {
+    background-color: #333;
+    color: #c6c6c6;
+    border: 1px solid #555;
+    border-radius: 3px;
+    padding: 4px 8px;
+    margin-left: 10px;
+    font-size: 14px;
+    
+    &:focus {
+        outline: none;
+        border-color: #777;
+        background-color: #444;
+    }
+    
+    option {
+        background-color: #333;
+        color: #c6c6c6;
+    }
 }
